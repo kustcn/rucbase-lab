@@ -7,7 +7,7 @@ THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
 EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. */
-
+#include <cstdio>
 #include <netinet/in.h>
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -97,7 +97,7 @@ void *client_handler(void *sock_fd) {
             std::cout << "Client read error!" << std::endl;
             break;
         }
-        
+
         printf("i_recvBytes: %d \n ", i_recvBytes);
 
         if (strcmp(data_recv, "exit") == 0) {
@@ -244,7 +244,7 @@ void start_server() {
             std::cout << "Accept error!" << std::endl;
             continue;  // ignore current socket ,continue while loop.
         }
-        
+
         // 和客户端建立连接，并开启一个线程负责处理客户端请求
         if (pthread_create(&thread_id, nullptr, &client_handler, (void *)(&sockfd)) != 0) {
             std::cout << "Create thread fail!" << std::endl;
@@ -296,7 +296,7 @@ int main(int argc, char **argv) {
         recovery->analyze();
         recovery->redo();
         recovery->undo();
-        
+
         // 开启服务端，开始接受客户端连接
         start_server();
     } catch (RMDBError &e) {

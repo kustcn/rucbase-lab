@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <readline/history.h>
@@ -114,7 +115,7 @@ std::string init_test_arguments(TestCase test_case) {
 // 返回sockfd
 int connect_database(const char* unix_sockect_path, const char* server_host, int server_port) {
     int sockfd;
-    
+
     if(unix_sockect_path != nullptr) {
         sockfd = init_unix_sock(unix_sockect_path);
     }
@@ -134,7 +135,7 @@ void disconnect(int sockfd) {
 }
 
 void start_test() {
-    
+
 }
 
 
@@ -150,7 +151,7 @@ int main(int argc, char *argv[]) {
     int server_port = PORT_DEFAULT;
     int opt;
     std::string test_name = argv[1];
-    
+
 
     while ((opt = getopt(argc, argv, "s:h:p:")) > 0) {
         switch (opt) {
@@ -175,7 +176,7 @@ int main(int argc, char *argv[]) {
 
     std::ifstream test;
     std::string sql;
-    
+
     // 测试点1
     test.open(test_name);
     while(std::getline(test, sql)) {

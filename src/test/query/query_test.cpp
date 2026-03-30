@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <readline/history.h>
@@ -105,7 +106,7 @@ int main(int argc, char *argv[]) {
     int server_port = PORT_DEFAULT;
     int opt;
     std::string test_name = argv[1];
-    
+
 
     while ((opt = getopt(argc, argv, "s:h:p:")) > 0) {
         switch (opt) {
@@ -140,7 +141,7 @@ int main(int argc, char *argv[]) {
 
     std::ifstream test;
     std::string sql;
-    
+
     // 测试点1
     test.open(test_name);
     while(std::getline(test, sql)) {
